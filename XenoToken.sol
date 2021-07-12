@@ -10,17 +10,23 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 contract XenoToken is ERC20, Ownable, ERC20Burnable {
     using SafeMath for uint256;
     
+    uint256 private _cap;
+    
     // Owner Wallet
-    address private constant _operator = 0xBC5dAf8bCD482EF62d3977DC93c35740d51Dd533;
     address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
     
-    constructor() ERC20("Xeno", "XENO") {
+    constructor(uint256 nCap) ERC20("Xeno Token", "XENO") {
+        require(nCap > 0, "XenoCapped: cap is 0");
+        _cap = nCap;
+        
         // Setup LP pools wtih 100 tokens
-        _mint(_operator, 100);
+        _mint(msg.sender, 100);
     }
     
     /// @dev Creates `_amount` token to `_to`. Must only be called by the owner (MasterChef).
     function mint(address _to, uint256 _amount) public onlyOwner {
+        require(ERC20.totalSupply() + _amount <= cap(), "XenoCapped: cap exceeded");
+        
         _mint(_to, _amount);
         _moveDelegates(address(0), _delegates[_to], _amount);
     }
@@ -61,6 +67,13 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
     /// @notice An event thats emitted when a delegate account's vote balance changes
     event DelegateVotesChanged(address indexed delegate, uint previousBalance, uint newBalance);
 
+    /**
+     * @dev Returns the cap on the token's total supply.
+     */
+    function cap() public view returns (uint256) {
+        return _cap;
+    }
+    
     /**
      * @notice Delegate votes from `msg.sender` to `delegatee`
      * @param delegator The address to get delegatee for
