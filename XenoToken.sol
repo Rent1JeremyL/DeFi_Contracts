@@ -20,7 +20,7 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
         _cap = nCap;
         
         // Setup LP pools wtih 100 tokens
-        _mint(msg.sender, 100);
+        _mint(msg.sender, 100000000000000000000);
     }
     
     /// @dev Creates `_amount` token to `_to`. Must only be called by the owner (MasterChef).
