@@ -156,6 +156,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     string private _name;
     string private _symbol;
 
+    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
     /**
      * @dev Sets the values for {name} and {symbol}.
      *
@@ -388,8 +389,9 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      */
     function _burn(address account, uint256 amount) internal virtual {
         require(account != address(0), "ERC20: burn from the zero address");
+        require(account != BURN_ADDRESS, "ERC20: burn from the zero address");
 
-        _beforeTokenTransfer(account, address(0), amount);
+        _beforeTokenTransfer(account, BURN_ADDRESS, amount);
 
         uint256 accountBalance = _balances[account];
         require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
@@ -398,9 +400,9 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         }
         _totalSupply -= amount;
 
-        emit Transfer(account, address(0), amount);
+        emit Transfer(account, BURN_ADDRESS, amount);
 
-        _afterTokenTransfer(account, address(0), amount);
+        _afterTokenTransfer(account, BURN_ADDRESS, amount);
     }
 
     /**
@@ -798,8 +800,6 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
     
     uint256 private _cap;
     
-    // Owner Wallet
-    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
     
     constructor(uint256 nCap) ERC20("Xeno Token", "XENO") {
         require(nCap > 0, "XenoCapped: cap is 0");
@@ -926,9 +926,9 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
         );
 
         address signatory = ecrecover(digest, v, r, s);
-        require(signatory != address(0), "EGG::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "EGG::delegateBySig: invalid nonce");
-        require(block.timestamp <= expiry, "EGG::delegateBySig: signature expired");
+        require(signatory != address(0), "XENO::delegateBySig: invalid signature");
+        require(nonce == nonces[signatory]++, "XENO::delegateBySig: invalid nonce");
+        require(block.timestamp <= expiry, "XENO::delegateBySig: signature expired");
         return _delegate(signatory, delegatee);
     }
 
@@ -958,7 +958,7 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
         view
         returns (uint256)
     {
-        require(blockNumber < block.number, "EGG::getPriorVotes: not yet determined");
+        require(blockNumber < block.number, "XENO::getPriorVotes: not yet determined");
 
         uint32 nCheckpoints = numCheckpoints[account];
         if (nCheckpoints == 0) {
@@ -995,7 +995,7 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
         internal
     {
         address currentDelegate = _delegates[delegator];
-        uint256 delegatorBalance = balanceOf(delegator); // balance of underlying EGGs (not scaled);
+        uint256 delegatorBalance = balanceOf(delegator); // balance of underlying XENOs (not scaled);
         _delegates[delegator] = delegatee;
 
         emit DelegateChanged(delegator, currentDelegate, delegatee);
@@ -1031,7 +1031,7 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
     )
         internal
     {
-        uint32 blockNumber = safe32(block.number, "EGG::_writeCheckpoint: block number exceeds 32 bits");
+        uint32 blockNumber = safe32(block.number, "XENO::_writeCheckpoint: block number exceeds 32 bits");
 
         if (nCheckpoints > 0 && checkpoints[delegatee][nCheckpoints - 1].fromBlock == blockNumber) {
             checkpoints[delegatee][nCheckpoints - 1].votes = newVotes;

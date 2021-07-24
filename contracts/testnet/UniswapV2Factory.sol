@@ -1,10 +1,8 @@
-/**
- *Submitted for verification at polygonscan.com on 2021-05-18
-*/
+// SPDX-License-Identifier: MIT
 
 // File: contracts/interfaces/IUniswapV2Factory.sol
 
-pragma solidity >=0.5.0;
+pragma solidity >=0.5.16;
 
 interface IUniswapV2Factory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
