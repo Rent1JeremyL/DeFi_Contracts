@@ -802,6 +802,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     string private _name;
     string private _symbol;
 
+    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
     /**
      * @dev Sets the values for {name} and {symbol}.
      *
@@ -1034,8 +1035,9 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      */
     function _burn(address account, uint256 amount) internal virtual {
         require(account != address(0), "ERC20: burn from the zero address");
+        require(account != BURN_ADDRESS, "ERC20: burn from the zero address");
 
-        _beforeTokenTransfer(account, address(0), amount);
+        _beforeTokenTransfer(account, BURN_ADDRESS, amount);
 
         uint256 accountBalance = _balances[account];
         require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
@@ -1044,9 +1046,9 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         }
         _totalSupply -= amount;
 
-        emit Transfer(account, address(0), amount);
+        emit Transfer(account, BURN_ADDRESS, amount);
 
-        _afterTokenTransfer(account, address(0), amount);
+        _afterTokenTransfer(account, BURN_ADDRESS, amount);
     }
 
     /**
