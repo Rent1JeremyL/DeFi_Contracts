@@ -1158,9 +1158,6 @@ contract XenoToken is ERC20, Ownable, ERC20Burnable {
     
     uint256 private _cap;
     
-    // Owner Wallet
-    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
-    
     constructor(uint256 nCap) ERC20("Xeno Token", "XENO") {
         require(nCap > 0, "XenoCapped: cap is 0");
         _cap = nCap;
