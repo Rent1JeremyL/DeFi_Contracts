@@ -2,7 +2,7 @@
   "name": "Xeno-Contracts",
   "version": "1.0.0",
   "scripts": {
-    "build-contracts-xeno": "sol-merger ./src/contracts/xeno/*.sol ./build/xeno/"
+    "build-contracts-xeno": "sol-merger ./src/contracts/xeno/*.sol ./flat/xeno/"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.2.0",
