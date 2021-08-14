@@ -1,0 +1,80 @@
+Block Countdowns
+https://api.polygonscan.com/api?module=block&action=getblockcountdown&blockno=17739818
+https://api-testnet.polygonscan.com/api?module=block&action=getblockcountdown&blockno=16280891
+{"status":"1","message":"OK","result":{"CurrentBlock":"16271497","CountdownBlock":"16280891","RemainingBlock":"9394","EstimateTimeInSec":"19742.4"}}
+
+PR Gas
+https://gasstation-mainnet.matic.network/
+
+Contracts Xeno
+test1 0x860358946653c99507BEB027729bEd6AFd733bfF
+merged 0xd30a5828462C2aF782Ae90aa9cbeAe8e648b0D32
+v2 0x36c1cC3D6c3448d3D384852CB60e314444D670D3
+https://mumbai.polygonscan.com/address/0xd30a5828462c2af782ae90aa9cbeae8e648b0d32#readContract
+PR 0x63bDB72ba6320A8cAc5e84734Db4F0DFb7b35FB0
+
+Contracts MasterChef
+test1 0xd2443924bd8BDb7df724389f49a4524B997Acf83
+merged 0xC897CaC19eA5AF24B8362CEc0874A7A81d14489A
+v2 0x0D3B1753Bfa96eAd31eDe1e88704Ed3722320776 
+https://mumbai.polygonscan.com/address/0xc897cac19ea5af24b8362cec0874a7a81d14489a#readContract
+PR 0x74c50d283046404A87Eaa7705f7227f09e5a91Dc
+
+Test Factory 0xC3E676F4D621Afbd7bdF95cd342a12B7c7BeE094
+Test Fake LPv2  0xb891884d31aE9ca793858CBcC21AE84d017561b7 xeno-usdc
+
+8000000000000000000000000 Max
+.080000000000000000	Emission
+100.000000000000000000
+.040000000000000000
+Start Block 17739818
+https://polygonscan.com/block/countdown/17739818
+EPOCH UNIX 1628535496
+
+MC Add Pools Testnet values
+0,50000,0xb891884d31aE9ca793858CBcC21AE84d017561b7,0,false //xeno-usdc LP
+1,30000,0x36c1cC3D6c3448d3D384852CB60e314444D670D3,0,false //xeno
+2,15000,0x41Ec38673f377D8A8c28359CBEfc132791A6efC5,400,false //wbtc
+3,15000,0x853ee4b2a13f8a742d64c8f088be7ba2131f670d,400,false //weth
+4,12000,0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270,400,false //wmatic
+5,12000,0x831753dd7087cac61ab5644b308642cc1c33dc13,400,false //quick
+6,10000,0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F,400,false //dai
+7,10000,0xA02f6adc7926efeBBd59Fd43A84f4E0c0c91e832,400,false //usdt
+
+MC Add Pools Mainnet values
+0,20000,0xcb9bcd25c85e2f604537c3f8e878ce330561e7a3,0,false //xeno-usdc LP
+1,5000,0x63bDB72ba6320A8cAc5e84734Db4F0DFb7b35FB0,0,false //xeno
+2,500,0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6,400,false //wbtc
+3,500,0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619,400,false //weth
+4,350,0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270,400,false //wmatic
+5,350,0x831753dd7087cac61ab5644b308642cc1c33dc13,400,false //quick
+6,200,0x8f3cf7ad23cd3cadbd9735aff958023239c6a063,400,false //dai
+7,200,0xc2132d05d31c914a87c6611c10748aeb04b58e8f,400,false //usdt
+8,350,0x7c76b6b3fe14831a39c0fec908da5f17180df677,400,false //Aave
+9,200,0xd9f57d9ed738ae20c5a60241a32fd076e69af005,400,false //Sushi
+10,500,0x6e7a5fafcec6bb1e78bae2a1f0b612012bf14827,400,false //wmatic-usdc LP
+11,500,0x2cF7252e74036d1Da831d11089D326296e64a728,400,false //USDT-USDC LP
+12,350,0x70cee55c98f6da2685807611f115ea737d4a248e,400,false //Link
+13,500,0xf04adbf75cdfc5ed26eea4bbbb991db002036bdd,400,false //DAI-USDC LP
+
+PR LP
+https://quickswap.exchange/#/add/0x63bDB72ba6320A8cAc5e84734Db4F0DFb7b35FB0/0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
+
+
+RugDoc
+#update (verified token contract) Xenomorph Finance
+1. masterchef : 0x74c50d283046404A87Eaa7705f7227f09e5a91Dc
+token : 0x63bDB72ba6320A8cAc5e84734Db4F0DFb7b35FB0
+
+2. https://xenomorph.finance
+
+3. #17739818
+
+4. polygon
+
+5. Aug 08 2021 01:31 UTC
+
+Item 5 is the only changed part, need to update the RugDoc Calendar please.
+
+Twitter
+#DeFi #DeFiFarms #YieldFarm #Polygon #matic #yieldfarming
